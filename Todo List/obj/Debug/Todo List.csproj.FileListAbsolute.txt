@@ -1,0 +1,10 @@
+D:\Prog\C#\TODO\Todo List\Todo List\bin\Debug\Todo List.exe.config
+D:\Prog\C#\TODO\Todo List\Todo List\bin\Debug\Todo List.exe
+D:\Prog\C#\TODO\Todo List\Todo List\bin\Debug\Todo List.pdb
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo List.csprojAssemblyReference.cache
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo_List.Properties.Resources.resources
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo List.csproj.GenerateResource.cache
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo List.csproj.CoreCompileInputs.cache
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo List.exe
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo List.pdb
+D:\Prog\C#\TODO\Todo List\Todo List\obj\Debug\Todo_List.Form1.resources
