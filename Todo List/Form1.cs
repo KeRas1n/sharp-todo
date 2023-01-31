@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -27,13 +22,67 @@ namespace Todo_List
             AddTask();
         }
 
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    Tasks[i].isChecked = true;
+                }
+                else
+                {
+                    Tasks[i].isChecked = false;
+                }
+            }
+
+            SaveData();
+        }
+
+        private void deleteItems_Click(object sender, EventArgs e)
+        {
+            DeleteAllItems();
+        }
+
+        private void checkAllBtn_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox1.CheckedItems.Count < checkedListBox1.Items.Count)
+            {
+                foreach (var task in Tasks)
+                {
+                    task.isChecked = true;
+                }
+            }
+            else
+            {
+                foreach (var task in Tasks)
+                {
+                    task.isChecked = false;
+                }
+            }
+
+            FetchTasks();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                AddTask();
+                e.Handled = true;
+            }
+        }
+
         void AddTask()
         {
-            if (textBox1.Text != null && textBox1.Text != "")
-            {
-                Tasks.Add(new Task(textBox1.Text, false));
+            string taskText = textBox1.Text;
 
-                checkedListBox1.Items.Add(textBox1.Text, false);
+            if (!string.IsNullOrEmpty(taskText) && taskText.Any(Char.IsLetter) || taskText.Any(Char.IsNumber))
+            {
+                Tasks.Add(new Task(taskText, false));
+
+                checkedListBox1.Items.Add(taskText, false);
 
                 textBox1.Text = "";
 
@@ -98,27 +147,8 @@ namespace Todo_List
             }
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void DeleteAllItems()
         {
-
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-            {
-                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
-                {
-                    Tasks[i].isChecked = true;
-                }
-                else
-                {
-                    Tasks[i].isChecked = false;
-                }
-            }
-
-            SaveData();
-        }
-
-        private void deleteItems_Click(object sender, EventArgs e)
-        {
-
             List<Task> tasksToRemove = new List<Task>();
 
             for (int i = 0; i < Tasks.Count; i++)
@@ -139,34 +169,7 @@ namespace Todo_List
             SaveData();
         }
 
-        private void checkAllBtn_Click(object sender, EventArgs e)
-        {
-            if (checkedListBox1.CheckedItems.Count < checkedListBox1.Items.Count)
-            {
-                foreach (var task in Tasks)
-                {
-                    task.isChecked = true;
-                }
-            }
-            else
-            {
-                foreach (var task in Tasks)
-                {
-                    task.isChecked = false;
-                }
-            }
-
-            FetchTasks();
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                AddTask();
-                e.Handled = true;
-            }
-        }
+        
     }
 
     class Task
